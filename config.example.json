@@ -1,0 +1,19 @@
+{
+  "reddit": {
+    "client_id": "YOUR_CLIENT_ID",
+    "client_secret": "YOUR_CLIENT_SECRET",
+    "user_agent": "RedditIdeaFinder/1.0 by YOUR_USERNAME"
+  },
+  "claude": {
+    "api_key": "YOUR_ANTHROPIC_API_KEY",
+    "model": "claude-sonnet-4-6"
+  },
+  "default_subreddits": [
+    "SomebodyMakeThis",
+    "AppIdeas",
+    "Startup_Ideas"
+  ],
+  "output_dir": "./reports",
+  "data_dir": "./data",
+  "max_comments_per_post": 100
+}

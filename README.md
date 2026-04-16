@@ -21,6 +21,12 @@ pip install -r requirements.txt
 
 ### 2. 配置 API 凭证
 
+复制配置模板并填入凭证：
+
+```bash
+cp config.example.json config.json
+```
+
 编辑 `config.json`，填入以下凭证：
 
 **Reddit API：**
