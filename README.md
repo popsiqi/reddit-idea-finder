@@ -1,17 +1,17 @@
-# Reddit 创业机会发现工具
+# Reddit Startup Idea Finder
 
-从 Reddit 子版块爬取热门帖子和评论，使用 AI 分析创业点子的可行性、市场潜力和落地优先级，生成结构化报告。
+A CLI tool that crawls hot posts from Reddit communities, analyzes startup ideas using Claude AI, and generates structured reports on feasibility, market potential, and implementation priority.
 
-## 功能
+## Features
 
-- 爬取指定子版块的热门帖子（按时间范围筛选）
-- 收集帖子和评论内容
-- 使用 Claude AI 进行多维度分析
-- 生成 Markdown 报告
+- Crawl top posts from specified subreddits (filtered by time range)
+- Collect post content and comments
+- Multi-dimensional AI analysis using Claude
+- Generate Markdown reports
 
-## 快速开始
+## Quick Start
 
-### 1. 安装依赖
+### 1. Install Dependencies
 
 ```bash
 python3 -m venv venv
@@ -19,80 +19,92 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 2. 配置 API 凭证
+### 2. Configure API Credentials
 
-复制配置模板并填入凭证：
+Copy the example config and fill in your credentials:
 
 ```bash
 cp config.example.json config.json
 ```
 
-编辑 `config.json`，填入以下凭证：
+Edit `config.json`:
 
-**Reddit API：**
-- 访问 https://www.reddit.com/prefs/apps
-- 创建 "script" 类型应用
-- 获取 `client_id` 和 `client_secret`
+**Reddit API:**
+- Visit https://www.reddit.com/prefs/apps
+- Create a "script" type application
+- Get `client_id` and `client_secret`
 
-**Claude API：**
-- 访问 https://console.anthropic.com
-- 创建 API Key
+**Claude API:**
+- Visit https://console.anthropic.com
+- Create an API Key
 
-### 3. 运行工具
+### 3. Run the Tool
 
 ```bash
-# 一键运行（默认 Past Month）
+# Quick run (default: Past Month)
 ./run.sh
 
-# 或使用命令行参数
+# Or use CLI arguments
 python reddit_ideas.py --time month
 python reddit_ideas.py --time week --top 20
 ```
 
-## 命令行参数
+## CLI Arguments
 
-| 参数 | 说明 | 默认值 |
-|------|------|--------|
-| `--time` | 时间范围：week/month/year/all | 必填 |
-| `--subreddits` | 子版块列表，逗号分隔 | SomebodyMakeThis,AppIdeas,Startup_Ideas |
-| `--top` | 分析热度 Top N 的帖子 | 15 |
-| `--output` | 输出目录 | ./reports/ |
+| Argument | Description | Default |
+|----------|-------------|---------|
+| `--time` | Time range: week/month/year/all | Required |
+| `--subreddits` | Subreddit list (comma-separated) | SomebodyMakeThis,AppIdeas,Startup_Ideas |
+| `--top` | Analyze top N posts by score | 15 |
+| `--output` | Output directory | ./reports/ |
 
-## 输出
+## Output
 
-- `data/YYYY-MM-DD.json` - 原始爬取数据
-- `reports/YYYY-MM-DD-report.md` - 分析报告
+- `data/YYYY-MM-DD.json` - Raw crawled data
+- `reports/YYYY-MM-DD-report.md` - Analysis report
 
-## 默认监控子版块
+## Default Subreddits
 
-- **r/SomebodyMakeThis** - 用户直接发布产品需求
-- **r/AppIdeas** - 软件/App 点子
-- **r/Startup_Ideas** - 完整创业点子
+- **r/SomebodyMakeThis** - Users post product requests directly
+- **r/AppIdeas** - Software/App ideas
+- **r/Startup_Ideas** - Full startup ideas with market analysis
 
-## 项目结构
+## Project Structure
 
 ```
 reddit-idea-finder/
-├── reddit_ideas.py      # 主程序
-├── config.json          # API 凭证配置
-├── run.sh               # 一键启动脚本
-├── requirements.txt     # Python 依赖
-├── config.py            # 配置加载模块
-├── crawler/             # 爬取模块
-│   ├── reddit_client.py # Reddit API 客户端
-│   └── fetcher.py       # 数据爬取逻辑
-├── analyzer/            # 分析模块
-│   ├── claude_client.py # Claude API 客户端
-│   └── analyzer.py      # 分析逻辑
-├── generator/           # 报告生成模块
-│   └── report.py        # Markdown 报告生成
-├── data/                # 原始数据存储
-└── reports/             # 报告输出
+├── reddit_ideas.py          # Main program
+├── config.json              # API credentials (create from example)
+├── config.example.json      # Configuration template
+├── run.sh                   # Quick start script
+├── requirements.txt         # Python dependencies
+├── config.py                # Config loader module
+├── crawler/                 # Crawling module
+│   ├── reddit_client.py     # Reddit API client
+│   └── fetcher.py           # Data fetching logic
+├── analyzer/                # Analysis module
+│   ├── claude_client.py     # Claude API client
+│   └── analyzer.py          # Analysis logic
+├── generator/               # Report generation module
+│   └── report.py            # Markdown report generator
+├── data/                    # Raw data storage
+└── reports/                 # Report output
 ```
 
-## 测试
+## Testing
 
 ```bash
 source venv/bin/activate
 pytest tests/ -v
 ```
+
+## License
+
+MIT License - For personal, non-commercial use only.
+
+## Disclaimer
+
+This tool is for personal research purposes only. It respects Reddit's API rate limits and only accesses public post data. It does not:
+- Replace any Reddit functionality
+- Scrape private user data
+- Commercialize Reddit content
