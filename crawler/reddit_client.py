@@ -1,6 +1,6 @@
 """Reddit API 客户端"""
 import praw
-from praw.models import Subreddit
+from praw.models import Subreddit, Submission
 from typing import Any
 
 
@@ -29,6 +29,17 @@ class RedditClient:
             Subreddit 对象
         """
         return self.reddit.subreddit(name)
+
+    def get_submission(self, submission_id: str) -> Submission:
+        """获取帖子对象
+
+        Args:
+            submission_id: 帖子 ID
+
+        Returns:
+            Submission 对象
+        """
+        return self.reddit.submission(id=submission_id)
 
     def test_connection(self) -> bool:
         """测试 API 连接是否正常

@@ -73,6 +73,7 @@ class Fetcher:
         """
         comments = []
         submission.comments.replace_more(limit=0)  # 跳过 "more comments" 链接
+        time.sleep(self.RATE_LIMIT_DELAY)  # 速率控制
 
         for i, comment in enumerate(submission.comments.list()[:self.max_comments]):
             if isinstance(comment, Comment):
@@ -141,7 +142,8 @@ class Fetcher:
         # 爬取评论
         total_comments = 0
         for post_data in all_posts:
-            submission = self.client.reddit.submission(id=post_data["id"])
+            time.sleep(self.RATE_LIMIT_DELAY)  # 速率控制
+            submission = self.client.get_submission(post_data["id"])
             comments = self.fetch_comments(post_data, submission, progress_callback)
             post_data["comments"] = comments
             total_comments += len(comments)
