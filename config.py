@@ -1,6 +1,5 @@
 """配置加载模块"""
 import json
-import os
 from pathlib import Path
 from typing import Any
 
